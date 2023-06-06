@@ -1,0 +1,19 @@
+name: Deploy AWS
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Refresh tags and categories for the Solodit
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'http://localhost:8000/api/general/refresh_tag_category/'
+        method: 'GET'
+        # username: ${{ secrets.AWX_USER }}
+        # password: ${{ secrets.AWX_PASSWORD }}
+        # customHeaders: '{"Content-Type": "application/json"}'
+        # data: '{"key_1": "value_1", "key_2": "value_2"}'
