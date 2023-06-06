@@ -8,14 +8,27 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
+    # - name: Refresh tags and categories for the Solodit
+    #   id: refreshRequest
+    #   uses: fjogeleit/http-request-action@v1.14.0
+    #   with:
+    #     url: 'https://solodit.xyz/api/general/refresh_tag_category/'
+    #     method: 'POST'
+    #     customHeaders: '{"Content-Type": "application/json"}'
+    #     data: '{"email": "wang", "password": "wang"}'
+    # - name: Show Response
+    #   run: |
+    #     echo ${{ steps.refreshRequest.outputs.response }}
+    #     echo ${{ steps.myRequest.outputs.headers }}
+
     - name: Refresh tags and categories for the Solodit
       id: refreshRequest
-      uses: fjogeleit/http-request-action@v1.14.0
+
+      uses: satak/webrequest-action@master
       with:
-        url: 'https://solodit.xyz/api/general/refresh_tag_category/'
-        method: 'POST'
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"email": "wang", "password": "wang"}'
+        url: https://solodit.xyz/api/general/refresh_tag_category/
+        method: POST
+        payload: '{"email": "${{ secrets.SOLODIT_EMAIL }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
     - name: Show Response
       run: |
         echo ${{ steps.refreshRequest.outputs.response }}
