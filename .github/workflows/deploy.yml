@@ -12,7 +12,7 @@ jobs:
       with:
         url: https://solodit.xyz/api/general/refresh_tag_category/
         method: POST
-        customHeaders: '{"Content-Type": "application/json"}'
+        customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
         data: '{"email": "wang", "password": "wang"}'
     - name: Show Response
       run: |
