@@ -28,8 +28,4 @@ jobs:
       with:
         url: https://solodit.xyz/api/general/refresh_tag_category/
         method: POST
-        payload: '{"email": "${{ secrets.SOLODIT_EMAIL }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
-    - name: Show Response
-      run: |
-        echo ${{ steps.refreshRequest.outputs.response }}
-        echo ${{ steps.myRequest.outputs.headers }}
+        payload: '{"email": "${{ secrets.SOLODIT_USER }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
