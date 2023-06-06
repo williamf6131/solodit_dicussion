@@ -14,7 +14,7 @@ jobs:
       with:
         url: 'https://solodit.xyz/api/general/refresh_tag_category/'
         method: 'POST'
-        # customHeaders: '{"Content-Type": "multipart/form-data"}'
+        customHeaders: '{"Content-Type": "application/json"}'
         data: '{"email": "${{ secrets.SOLODIT_USER }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
     - name: Show Response
       run: |
