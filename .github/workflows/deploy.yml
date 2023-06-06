@@ -1,6 +1,8 @@
 name: Deploy
 
-on: [workflow_dispatch]
+on:
+  push:
+    branches: [ 'main' ]
 
 jobs:
   deployment:
@@ -12,18 +14,9 @@ jobs:
       with:
         url: https://solodit.xyz/api/general/refresh_tag_category/
         method: POST
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"email": "wang", "password": "wang"}'
+        customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
+        data: '{"email": "${{ secrets.SOLODIT_USER }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
     - name: Show Response
       run: |
         echo ${{ steps.refreshRequest.outputs.response }}
         echo ${{ steps.myRequest.outputs.headers }}
-
-    # - name: Refresh tags and categories for the Solodit
-    #   id: refreshRequest
-
-    #   uses: satak/webrequest-action@master
-    #   with:
-    #     url: https://solodit.xyz/api/general/refresh_tag_category/
-    #     method: POST
-    #     payload: '{"email": "${{ secrets.SOLODIT_USER }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
