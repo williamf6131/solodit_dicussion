@@ -9,9 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Refresh tags and categories for the Solodit
+      id: refreshRequest
       uses: fjogeleit/http-request-action@v1
       with:
         url: 'https://solodit.xyz/api/general/refresh_tag_category/'
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"email": "${{ secrets.SOLODIT_USER }}", "password": "${{ secrets.SOLODIT_PASSWORD }}"}'
+        data: '{"email": ${{ secrets.SOLODIT_USER }}, "password": ${{ secrets.SOLODIT_PASSWORD }}}'
+    - name: Show Response
+      run: |
+        echo ${{ steps.refreshRequest.outputs.response }}
+        echo ${{ steps.myRequest.outputs.headers }}
