@@ -15,7 +15,7 @@ jobs:
         url: 'https://solodit.xyz/api/general/refresh_tag_category/'
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{email: wang, password: ${{ secrets.SOLODIT_PASSWORD }}}'
+        data: '{"email": "wang", "password": "wang"}'
     - name: Show Response
       run: |
         echo ${{ steps.refreshRequest.outputs.response }}
